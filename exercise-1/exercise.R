@@ -11,33 +11,33 @@ library(fueleconomy)
 
 # You should now have access to the `vehicles` data frame
 # You can use `View()` to inspect it
-
+View(vehicles)
 
 # Select the different manufacturers (makes) of the cars in this data set. 
 # Save this vector in a variable
-
+makes <- vehicles$make
 
 # Use the `unique()` function to determine how many different car manufacturers
 # are represented by the data set
-
+unique_makes <- length(unique(makes))
 
 # Filter the data set for vehicles manufactured in 1997
-
+made_in_97 <- vehicles[vehicles$year==1997,]
 
 # Arrange the 1997 cars by highway (`hwy`) gas milage
 # Hint: use the `order()` function to get a vector of indices in order by value
 # See also:
 # https://www.r-bloggers.com/r-sorting-a-data-frame-by-the-contents-of-a-column/
-
+made_in_97 <- made_in_97[order(made_in_97$hwy),]
 
 # Mutate the 1997 cars data frame to add a column `average` that has the average
 # gas milage (between city and highway mpg) for each car
-
+made_in_97$average <- (made_in_97$hwy + made_in_97$cty) / 2
 
 # Filter the whole vehicles data set for 2-Wheel Drive vehicles that get more
 # than 20 miles/gallon in the city. 
 # Save this new data frame in a variable.
-
+two_wheel <- vehicles[vehicles$drive=="2-Wheel Drive" & vehicles$cty>20,]
 
 # Of the above vehicles, what is the vehicle ID of the vehicle with the worst 
 # hwy mpg?
